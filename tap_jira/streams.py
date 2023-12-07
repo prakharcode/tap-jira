@@ -2301,8 +2301,8 @@ class IssueStream(JiraStream):
         row["updated"] = row["fields"].get("updated")
 
         versions = row["fields"].get("versions")
-        if versions and type(versions) != str:
-            row["fields"]["versions"] = json.dumps(row["fields"]["versions"])
+        if versions and type(versions) != list:
+            row["fields"]["versions"] = [json.dumps(row["fields"]["versions"])]
 
         return row
 
