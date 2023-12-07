@@ -2,14 +2,13 @@
 
 from __future__ import annotations
 
-from pathlib import Path
+import json
 from typing import Optional
 
+import requests
 from singer_sdk import typing as th  # JSON Schema typing helpers
 
 from tap_jira.client import JiraStream
-
-import requests
 
 PropertiesList = th.PropertiesList
 Property = th.Property
@@ -2300,6 +2299,10 @@ class IssueStream(JiraStream):
 
         row["created"] = row["fields"].get("created")
         row["updated"] = row["fields"].get("updated")
+
+        versions = row["fields"].get("versions")
+        if versions and type(versions) != str:
+            row["fields"]["versions"] = json.dumps(row["fields"]["versions"])
 
         return row
 

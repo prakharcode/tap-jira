@@ -6,7 +6,8 @@ from pathlib import Path
 from typing import Any, Callable, Iterable
 
 import requests
-from singer_sdk.authenticators import BasicAuthenticator, BearerTokenAuthenticator
+from singer_sdk.authenticators import (BasicAuthenticator,
+                                       BearerTokenAuthenticator)
 from singer_sdk.helpers.jsonpath import extract_jsonpath
 from singer_sdk.pagination import BaseAPIPaginator
 from singer_sdk.streams import RESTStream
