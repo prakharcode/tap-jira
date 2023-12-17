@@ -317,7 +317,7 @@ class ProjectStream(JiraStream):
     """
 
     name = "projects"
-    path = "/project/search"
+    path = "/project/search?expand=lead"
     primary_keys = ["id"]
     replication_key = "id"
     replication_method = "INCREMENTAL"
@@ -358,6 +358,27 @@ class ProjectStream(JiraStream):
                 Property("id", StringType),
                 Property("name", StringType),
                 Property("description", StringType),
+            ),
+        ),
+        Property(
+            "lead", 
+            ObjectType(
+                Property("self", StringType),
+                Property("accountId", StringType),
+                Property("emailAddress", StringType),
+                Property(
+                    "avatarUrls",
+                    ObjectType(
+                        Property("48x48", StringType),
+                        Property("24x24", StringType),
+                        Property("16x16", StringType),
+                        Property("32x32", StringType),
+                    ),
+                ),
+                Property("displayName", StringType),
+                Property("active", BooleanType),
+                Property("timeZone", StringType),
+                Property("accountType", StringType),
             ),
         ),
         Property(
