@@ -3275,6 +3275,7 @@ class SprintStream(JiraStream):
     parent_stream_type = BoardStream
     path = "/board/{board_id}/sprint?maxResults=100"
     replication_method = "INCREMENTAL"
+    primary_keys = ["id"]
     replication_key = "id"
     records_jsonpath = "$[values][*]"  # Or override `parse_response`.
     instance_name = "values"
